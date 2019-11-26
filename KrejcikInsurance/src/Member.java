@@ -10,7 +10,8 @@ import java.io.Serializable;
 
 public class Member implements Serializable {
 	private String nameFirst, nameLast;
-	private int age, height, weight, bpSyst, bpDias, score;
+	private int age, height, weight, bpSyst, bpDias;
+	private InsuranceScore score;
 	
 
 	private boolean cancer, diabetes, alzheimers;
@@ -59,30 +60,29 @@ public class Member implements Serializable {
 	public void setBpDias(int bpDias) {
 		if (bpDias > 0) { this.bpDias = bpDias; }
 	}
-	public boolean isCancer() {
+	public boolean hasCancer() {
 		return cancer;
 	}
 	public void setCancer(boolean cancer) {
 		this.cancer = cancer;
 	}
-	public boolean isDiabetes() {
+	public boolean hasDiabetes() {
 		return diabetes;
 	}
 	public void setDiabetes(boolean diabetes) {
 		this.diabetes = diabetes;
 	}
-	public boolean isAlzheimers() {
+	public boolean hasAlzheimers() {
 		return alzheimers;
 	}
 	public void setAlzheimers(boolean alzheimers) {
 		this.alzheimers = alzheimers;
 	}
-	public int getScore() {
+	public InsuranceScore getScore() {
 		return score;
 	}
-	public void setScore(int score) {
-		// TODO
-		if (score > 0) { this.score = score; }
+	public void setScore(InsuranceScore score) {
+		this.score = score;
 	}
 	
 	
@@ -98,7 +98,7 @@ public class Member implements Serializable {
 		this.setCancer(false);
 		this.setDiabetes(false);
 		this.setAlzheimers(false);
-		this.setScore(0);
+		this.setScore(null);
 	}
 	
 	public Member(String nameFirst, String nameLast, int age, int height, int weight, int bpSyst, int bpDias, boolean cancer, boolean diabetes, boolean alzheimers) {
@@ -112,16 +112,38 @@ public class Member implements Serializable {
 		this.setCancer(cancer);
 		this.setDiabetes(diabetes);
 		this.setAlzheimers(alzheimers);
-		this.setScore(calculateScore(this)); // TODO
+		this.setScore(new InsuranceScore(this));
 	}
 	
 	
-	// Risk assessment output
+	// Returns "y" for true and "n" for false
+	private static String boolLetter(boolean input) {
+		if (input) { return "y"; }
+		else { return "n"; }
+	}
+	
+	
+	// Member information output
 	@Override
 	public String toString() {
-		return String.format("Name:   %30s\nScore:  %30s\nVerdict:%30s",
-				this.getNameLast() + ", " + this.getNameFirst(),
-				this.getScore(),
-				assessRisk(this)); // TODO
+		return String.format(
+				"%s, %s\n"  // LastName, FirstName
+				+ "Age          %3d\n"
+				+ "Height       %3d in\n"
+				+ "Weight       %3d lbs\n"
+				+ "BP Syst      %3d\n"
+				+ "BP Dias      %3d\n"
+				+ "Cancer         %s\n"
+				+ "Diabetes       %s\n"
+				+ "Alzheimers     %s\n",
+				this.getNameLast(), this.getNameFirst(),
+				this.getHeight(),
+				this.getWeight(),
+				this.getBpSyst(),
+				this.getBpDias(),
+				boolLetter(this.hasCancer()),
+				boolLetter(this.hasDiabetes()),
+				boolLetter(this.hasAlzheimers())
+				);
 	}
 }
