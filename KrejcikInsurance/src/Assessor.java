@@ -9,7 +9,7 @@ public class Assessor {
 	// Calculate BMI
 	private static String calculateBMI(int height, int weight) {
 		double kilograms = weight / 2.2046;
-		double meters = height * 0.254;
+		double meters = height / 39.37;
 		double bmi = kilograms / (meters * meters);
 		
 		if (bmi < 25.0) { return "normal"; }
@@ -45,7 +45,7 @@ public class Assessor {
 		
 		// BMI Scoring
 		if (bmi.equals("normal")) { score += 0; }
-		else if (bmi.contentEquals("overweight")) { score += 30; }
+		else if (bmi.equals("overweight")) { score += 30; }
 		else { score += 75; }
 		
 		// Blood Pressure Scoring
@@ -56,9 +56,9 @@ public class Assessor {
 		else if (bloodPressure.equals("crisis")) { score += 100; }
 		
 		// Family Disease Scoring
-		if (member.getCancer() == "y") { score += 10; }
-		if (member.getDiabetes() == "y") { score += 10; }
-		if (member.getAlzheimers() == "y") { score += 10; }
+		if (member.getCancer().equals("y")) { score += 10; }
+		if (member.getDiabetes().equals("y")) { score += 10; }
+		if (member.getAlzheimers().equals("y")) { score += 10; }
 		
 		// Final score
 		return score;
