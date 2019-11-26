@@ -52,4 +52,14 @@ public class InsuranceScore {
 		this.setScore(Assessor.calculateScore(member));
 		this.setRisk(Assessor.calculateRisk(getScore()));
 	}
+	
+	
+	// Risk assessment output
+	@Override
+	public String toString() {
+		return String.format("Name:   %30s\nScore:  %30s\nVerdict:%30s",
+				this.getNameLast() + ", " + this.getNameFirst(),
+				this.getScore(),
+				this.getRisk());
+	}
 }

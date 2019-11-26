@@ -18,7 +18,7 @@ public class MemberReader {
 			ArrayList<Member> result = new ArrayList<Member>();
 			String nameFirst, nameLast;
 			int age, height, weight, bpSyst, bpDias;
-			boolean cancer = false, diabetes = false, alzheimers = false;
+			String cancer, diabetes, alzheimers;
 			Member tempMem;
 			
 			while (fsc.hasNextLine()) {
@@ -29,10 +29,9 @@ public class MemberReader {
 				weight = fsc.nextInt();
 				bpSyst = fsc.nextInt();
 				bpDias = fsc.nextInt();
-				
-				if (fsc.next() == "y") { cancer = true; }
-				if (fsc.next() == "y") { diabetes = true; }
-				if (fsc.next() == "y") { alzheimers = true; }
+				cancer = fsc.next();
+				diabetes = fsc.next();
+				alzheimers = fsc.next();
 				
 				tempMem = new Member(nameFirst, nameLast, age, height, weight, bpSyst, bpDias, cancer, diabetes, alzheimers);
 				result.add(tempMem);

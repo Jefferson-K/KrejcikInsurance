@@ -45,6 +45,12 @@ public class KrejcikInsurance {
 	}
 
 	
+	// Determine number of members loaded from file
+	private static String numberOfMembersLoaded(ArrayList<Member> members) {
+		return members.size() + " member(s) were read.\n";
+	}
+	
+	
 	// Main procedure
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -56,7 +62,7 @@ public class KrejcikInsurance {
 		System.out.print("Enter the name of the Insurance file: ");
 		// Display count of insurance members
 		fname = sc.nextLine();
-		members = MemberFileReader.readMemberData(fname);  // TODO
+		members = MemberReader.readMembersFromTextFile(fname);  // TODO
 		
 		// Exit if file failed
 		if (members == null) {
@@ -64,6 +70,7 @@ public class KrejcikInsurance {
 			System.out.println("Please relaunch the application after verifying the contents of the member file.");
 			System.out.println("Goodbye.");
 		} else {
+			System.out.println(numberOfMembersLoaded(members));
 			do {
 				showMenu();
 				while (!sc.hasNextInt()) {
@@ -73,6 +80,7 @@ public class KrejcikInsurance {
 				
 				if (choice == 1) {
 					// List Members
+					MemberWriter.writeMembersToScreen(members);
 				} else if (choice == 2) {
 					// Add a new member
 				} else if (choice == 3) {

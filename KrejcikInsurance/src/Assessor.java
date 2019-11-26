@@ -56,9 +56,9 @@ public class Assessor {
 		else if (bloodPressure.equals("crisis")) { score += 100; }
 		
 		// Family Disease Scoring
-		if (member.hasCancer()) { score += 10; }
-		if (member.hasDiabetes()) { score += 10; }
-		if (member.hasAlzheimers()) { score += 10; }
+		if (member.getCancer() == "y") { score += 10; }
+		if (member.getDiabetes() == "y") { score += 10; }
+		if (member.getAlzheimers() == "y") { score += 10; }
 		
 		// Final score
 		return score;

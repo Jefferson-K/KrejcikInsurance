@@ -12,9 +12,7 @@ public class Member implements Serializable {
 	private String nameFirst, nameLast;
 	private int age, height, weight, bpSyst, bpDias;
 	private InsuranceScore score;
-	
-
-	private boolean cancer, diabetes, alzheimers;
+	private String cancer, diabetes, alzheimers;
 	
 	
 	// Getters and Setters
@@ -34,48 +32,48 @@ public class Member implements Serializable {
 		return age;
 	}
 	public void setAge(int age) {
-		if (age > 0) { this.age = age; }
+		if (age >= 0) { this.age = age; }
 	}
 	public int getHeight() {
 		return height;
 	}
 	public void setHeight(int height) {
-		if (height > 0) { this.height = height; }
+		if (height >= 0) { this.height = height; }
 	}
 	public int getWeight() {
 		return weight;
 	}
 	public void setWeight(int weight) {
-		if (weight > 0) { this.weight = weight; }
+		if (weight >= 0) { this.weight = weight; }
 	}
 	public int getBpSyst() {
 		return bpSyst;
 	}
 	public void setBpSyst(int bpSyst) {
-		if (bpSyst > 0) { this.bpSyst = bpSyst; }
+		if (bpSyst >= 0) { this.bpSyst = bpSyst; }
 	}
 	public int getBpDias() {
 		return bpDias;
 	}
 	public void setBpDias(int bpDias) {
-		if (bpDias > 0) { this.bpDias = bpDias; }
+		if (bpDias >= 0) { this.bpDias = bpDias; }
 	}
-	public boolean hasCancer() {
+	public String getCancer() {
 		return cancer;
 	}
-	public void setCancer(boolean cancer) {
+	public void setCancer(String cancer) {
 		this.cancer = cancer;
 	}
-	public boolean hasDiabetes() {
+	public String getDiabetes() {
 		return diabetes;
 	}
-	public void setDiabetes(boolean diabetes) {
+	public void setDiabetes(String diabetes) {
 		this.diabetes = diabetes;
 	}
-	public boolean hasAlzheimers() {
+	public String getAlzheimers() {
 		return alzheimers;
 	}
-	public void setAlzheimers(boolean alzheimers) {
+	public void setAlzheimers(String alzheimers) {
 		this.alzheimers = alzheimers;
 	}
 	public InsuranceScore getScore() {
@@ -95,13 +93,13 @@ public class Member implements Serializable {
 		this.setWeight(0);
 		this.setBpSyst(0);
 		this.setBpDias(0);
-		this.setCancer(false);
-		this.setDiabetes(false);
-		this.setAlzheimers(false);
+		this.setCancer("n");
+		this.setDiabetes("n");
+		this.setAlzheimers("n");
 		this.setScore(null);
 	}
 	
-	public Member(String nameFirst, String nameLast, int age, int height, int weight, int bpSyst, int bpDias, boolean cancer, boolean diabetes, boolean alzheimers) {
+	public Member(String nameFirst, String nameLast, int age, int height, int weight, int bpSyst, int bpDias, String cancer, String diabetes, String alzheimers) {
 		this.setNameFirst(nameFirst);
 		this.setNameLast(nameLast);
 		this.setAge(age);
@@ -116,34 +114,29 @@ public class Member implements Serializable {
 	}
 	
 	
-	// Returns "y" for true and "n" for false
-	private static String boolLetter(boolean input) {
-		if (input) { return "y"; }
-		else { return "n"; }
-	}
-	
-	
 	// Member information output
 	@Override
 	public String toString() {
 		return String.format(
 				"%s, %s\n"  // LastName, FirstName
-				+ "Age          %3d\n"
-				+ "Height       %3d in\n"
-				+ "Weight       %3d lbs\n"
-				+ "BP Syst      %3d\n"
-				+ "BP Dias      %3d\n"
-				+ "Cancer         %s\n"
-				+ "Diabetes       %s\n"
-				+ "Alzheimers     %s\n",
-				this.getNameLast(), this.getNameFirst(),
-				this.getHeight(),
-				this.getWeight(),
-				this.getBpSyst(),
-				this.getBpDias(),
-				boolLetter(this.hasCancer()),
-				boolLetter(this.hasDiabetes()),
-				boolLetter(this.hasAlzheimers())
+				+ "Age            %3d\n"
+				+ "Height         %3d in\n"
+				+ "Weight         %3d lbs\n"
+				+ "BP Syst        %3d\n"
+				+ "BP Dias        %3d\n"
+				+ "Cancer           %s\n"
+				+ "Diabetes         %s\n"
+				+ "Alzheimers       %s\n"
+				+ "-----------------------",
+				getNameLast(), getNameFirst(),
+				getAge(),
+				getHeight(),
+				getWeight(),
+				getBpSyst(),
+				getBpDias(),
+				getCancer(),
+				getDiabetes(),
+				getAlzheimers()
 				);
 	}
 }
