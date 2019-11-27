@@ -1,17 +1,21 @@
-/*
- * Jeff Krejcik
- * 
- * MemberReader Class
- * This class reads member information from various formats
- */
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.beans.XMLDecoder;
  
+/**
+This class reads member information from vaious file formats.
+@author Jeff Krejcik
+*/
 @SuppressWarnings("unchecked")  // Suggested in lecture/demo to suppress warnings
 public class MemberReader {	
-	// Read member info from tab-delimited file
+	/**
+	 Reads member data from a tab-delimited file.
+	 @param fname, target text file path	 
+	 */
 	public static ArrayList<Member> readMembersFromTextFile(String fname) {
 		try {
 			Scanner fsc = new Scanner(new File(fname));
@@ -45,7 +49,10 @@ public class MemberReader {
 		}
 	}
 	
-	// Read member info from binary file
+	/**
+	 Reads member data from a binary file.
+	 @param fname, target binary file path	 
+	 */
 	public static ArrayList<Member> readMembersFromBinary(String fname) {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fname));
@@ -57,7 +64,10 @@ public class MemberReader {
 		}
 	}
 	
-	// Read member info from xml file
+	/**
+	 Reads member data from an XML file.
+	 @param fname, target XML file path	 
+	 */
 	public static ArrayList<Member> readMembersFromXML(String fname) {
 		try {
 			XMLDecoder xml = new XMLDecoder(new BufferedInputStream(new FileInputStream(fname)));

@@ -1,13 +1,9 @@
-/*
- * Jeff Krejcik
- * 
- * Member Class
- * This is the blueprint for creating new members
- */
-
-import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+This is the blueprint for creating new members. Serializable is implemented to allow for cleaner exports.
+@author Jeff Krejcik
+*/
 public class Member implements Serializable {
 	private String nameFirst, nameLast;
 	private int age, height, weight, bpSyst, bpDias;
@@ -84,7 +80,9 @@ public class Member implements Serializable {
 	}
 	
 	
-	// Constructors
+	/**
+	 Default constructor.
+	 */
 	public Member() {
 		this.setNameFirst("");
 		this.setNameLast("");
@@ -99,6 +97,12 @@ public class Member implements Serializable {
 		this.setScore(null);
 	}
 	
+	/**
+	 Override constructor.
+	 @param cancer, expects a value of 'y' or 'n' in reference to the member's family medical history
+	 @param diabetes, expects a value of 'y' or 'n' in reference to the member's family medical history
+	 @param alzheimers, expects a value of 'y' or 'n' in reference to the member's family medical history
+	 */
 	public Member(String nameFirst, String nameLast, int age, int height, int weight, int bpSyst, int bpDias, String cancer, String diabetes, String alzheimers) {
 		this.setNameFirst(nameFirst);
 		this.setNameLast(nameLast);
@@ -113,7 +117,10 @@ public class Member implements Serializable {
 		this.setScore(new InsuranceScore(this));
 	}
 	
-	
+	/**
+	 * Tab-deliminited format.
+	 * @return String output for tab-delimited format
+	 */
 	// Formatting for tab delimited output
 	public String tabDelimOutput() {
 		return getNameLast() + "\t" +
@@ -129,7 +136,10 @@ public class Member implements Serializable {
 	}
 	
 	
-	// Member information output
+	/**
+	 * Screen format.
+	 * @return String format to display member data on a screen
+	 */
 	@Override
 	public String toString() {
 		return String.format(

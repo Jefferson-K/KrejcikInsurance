@@ -1,12 +1,14 @@
-/*
- * Jeff Krejcik
- * 
- * Assessor Class
- * This class determines the risk for a member and creates an InsuranceScore object
+/**
+ This class determines the risk for a member based on member attributes, allowing for the creation of an insurance score.
+ @author Jeff Krejcik
  */
-
 public class Assessor {	
-	// Calculate BMI
+	/**
+	 * Calculates a Member's BMI
+	 * @param height, expects inches, then converts to meters
+	 * @param weight, expects pounds, then converts to kilograms
+	 * @return a String representing the name of the Member's BMI range
+	 */
 	private static String calculateBMI(int height, int weight) {
 		double kilograms = weight / 2.2046;
 		double meters = height / 39.37;
@@ -18,7 +20,12 @@ public class Assessor {
 	}
 	
 	
-	// Calculate Blood Pressure
+	/**
+	 * Use two Member metrics to calculate a blood pressure category
+	 * @param bpSyst, the Member's systolic blood pressure
+	 * @param bpDias, the Member's diastolic blood pressure
+	 * @return a String representing the Member's blood pressure classification
+	 */
 	private static String calculateBloodPressure(int bpSyst, int bpDias) {
 		if (bpSyst < 120 && bpDias < 80) { return "normal"; }  // 1-normal
 		else if (bpSyst < 130 && bpDias < 80) { return "elevated"; }  // 2-elevated
@@ -30,7 +37,11 @@ public class Assessor {
 	}
 	
 	
-	// Determine member insurance score
+	/**
+	 * Determines a Member's Insurance Score
+	 * @param member, an existing Member to be scored
+	 * @return an integer representation of the calculated score
+	 */
 	public static int calculateScore(Member member) {
 		int score = 0;
 		int age = member.getAge();
@@ -64,7 +75,11 @@ public class Assessor {
 		return score;
 	}
 	
-	// Determine member risk level
+	/**
+	 * Determines a verbal risk level
+	 * @param score, calculated risk score
+	 * @return a String of the risk level classification
+	 */
 	public static String calculateRisk(int score) {
 		if (score <= 20) { return "low risk"; }
 		else if (score <= 50) { return "moderate risk"; }

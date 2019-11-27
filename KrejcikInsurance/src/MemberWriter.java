@@ -1,15 +1,21 @@
-/*
- * Jeff Krejcik
- * 
- * MemberWriter Class
- * This class outputs member information to various formats
- */
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.beans.XMLEncoder;
 
+/**
+This class outputs member information to the screen and to multiple file formats.
+@author Jeff Krejcik
+*/
 public class MemberWriter {
-	// Write member info to screen
+	/**
+	 * Outputs member data to the screen
+	 * @param members, an ArrayList of all members to be displayed
+	 */
 	public static void writeMembersToScreen(ArrayList<Member> members) {
 		for (Member m : members) {
 			System.out.println(m);
@@ -17,7 +23,12 @@ public class MemberWriter {
 	}
 	
 	
-	// Write member info to tab-delimited file
+	/**
+	 * Exports member data to a tab-delimited text file
+	 * @param members, ArrayList of members to be exported
+	 * @param fname, target file destination
+	 * @return success message
+	 */
 	public static boolean writeMembersToTextFile(ArrayList<Member> members, String fname) {
 		try {
 			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fname)));
@@ -32,7 +43,12 @@ public class MemberWriter {
 	}
 	
 	
-	// Write member info to binary file
+	/**
+	 * Exports member data to a binary file
+	 * @param members, ArrayList of members to be exported
+	 * @param fname, target file destination
+	 * @return success message
+	 */
 	public static boolean writeMembersToBinary(ArrayList<Member> members, String fname) {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fname));
@@ -45,7 +61,12 @@ public class MemberWriter {
 	}
 	
 	
-	// Write member info to xml file
+	/**
+	 * Exports member data to an XML file
+	 * @param members, ArrayList of members to be exported
+	 * @param fname, target file destination
+	 * @return success message
+	 */
 	public static boolean writeMembersToXML(ArrayList<Member> members, String fname) {
 		try {
 			XMLEncoder xml = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(fname)));
