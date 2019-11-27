@@ -16,25 +16,27 @@ public class MemberReader {
 		try {
 			Scanner fsc = new Scanner(new File(fname));
 			ArrayList<Member> result = new ArrayList<Member>();
-			String nameFirst, nameLast;
+			String line, nameFirst, nameLast;
 			int age, height, weight, bpSyst, bpDias;
 			String cancer, diabetes, alzheimers;
 			Member tempMem;
 			
 			while (fsc.hasNextLine()) {
-				nameFirst = fsc.next();
-				nameLast = fsc.next();
-				age = fsc.nextInt();
-				height = fsc.nextInt();
-				weight = fsc.nextInt();
-				bpSyst = fsc.nextInt();
-				bpDias = fsc.nextInt();
-				cancer = fsc.next();
-				diabetes = fsc.next();
-				alzheimers = fsc.next();
-				
-				tempMem = new Member(nameFirst, nameLast, age, height, weight, bpSyst, bpDias, cancer, diabetes, alzheimers);
-				result.add(tempMem);
+				try {
+					nameFirst = fsc.next();
+					nameLast = fsc.next();
+					age = fsc.nextInt();
+					height = fsc.nextInt();
+					weight = fsc.nextInt();
+					bpSyst = fsc.nextInt();
+					bpDias = fsc.nextInt();
+					cancer = fsc.next();
+					diabetes = fsc.next();
+					alzheimers = fsc.next();
+					
+					tempMem = new Member(nameFirst, nameLast, age, height, weight, bpSyst, bpDias, cancer, diabetes, alzheimers);
+					result.add(tempMem);
+				} catch (Exception ex) {}
 			}
 			fsc.close();
 			return result;

@@ -114,6 +114,21 @@ public class Member implements Serializable {
 	}
 	
 	
+	// Formatting for tab delimited output
+	public String tabDelimOutput() {
+		return getNameLast() + "\t" +
+				getNameFirst() + "\t" +
+				getAge() + "\t" +
+				getHeight() + "\t" +
+				getWeight() + "\t" +
+				getBpSyst() + "\t" +
+				getBpDias() + "\t" +
+				getCancer() + "\t" +
+				getDiabetes() + "\t" +
+				getAlzheimers();
+	}
+	
+	
 	// Member information output
 	@Override
 	public String toString() {

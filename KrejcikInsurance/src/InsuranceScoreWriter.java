@@ -10,24 +10,25 @@ import java.io.*;
 
 public class InsuranceScoreWriter {
 	// Procedure to write to screen
-	public static void writeScoresToScreen(ArrayList<InsuranceScore> scores) {
-		for (InsuranceScore score : scores) {
-			System.out.println(score);
+	public static void writeScoresToScreen(ArrayList<Member> members) {
+		for (Member member : members) {
+			System.out.println(member.getScore());
+			System.out.println();
 		}
 	}
 	
 	// Procedure to write to JSON
-	public static boolean writeScoresToJSON(ArrayList<InsuranceScore> scores, String fname) {
+	public static boolean writeScoresToJSON(ArrayList<Member> members, String fname) {
 		try {
 			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fname)));
 			JSONArray array = new JSONArray();
 			JSONObject obj;
-			for (InsuranceScore score : scores) {
+			for (Member member : members) {
 				obj = new JSONObject();
-				obj.put("nameFirst", score.getNameFirst());
-				obj.put("nameLast", score.getNameLast());
-				obj.put("score", score.getScore());
-				obj.put("risk", score.getRisk());
+				obj.put("nameFirst", member.getScore().getNameFirst());
+				obj.put("nameLast", member.getScore().getNameLast());
+				obj.put("score", member.getScore().getScore());
+				obj.put("risk", member.getScore().getRisk());
 				array.put(obj);
 			}
 			JSONObject scoreList = new JSONObject();

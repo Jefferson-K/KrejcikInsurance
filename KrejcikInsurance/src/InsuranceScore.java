@@ -4,8 +4,9 @@
  * InsuranceScore Class
  * This is the blueprint for creating new insurance scores
  */
+import java.io.Serializable;
 
-public class InsuranceScore {
+public class InsuranceScore implements Serializable {
 	private String nameFirst, nameLast;
 	private int score;
 	private String risk;
@@ -57,7 +58,7 @@ public class InsuranceScore {
 	// Risk assessment output
 	@Override
 	public String toString() {
-		return String.format("Name:   %30s\nScore:  %30s\nVerdict:%30s",
+		return String.format("Name:   %25s\nScore:  %25s\nVerdict:%25s",
 				this.getNameLast() + ", " + this.getNameFirst(),
 				this.getScore(),
 				this.getRisk());

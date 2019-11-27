@@ -18,11 +18,11 @@ public class MemberWriter {
 	
 	
 	// Write member info to tab-delimited file
-	public static boolean writeMembersToTextFile(String fname, ArrayList<Member> members) {
+	public static boolean writeMembersToTextFile(ArrayList<Member> members, String fname) {
 		try {
 			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fname)));
 			for (Member m : members) {
-				pw.println(m);
+				pw.println(m.tabDelimOutput());
 			}
 			pw.close();
 			return true;
